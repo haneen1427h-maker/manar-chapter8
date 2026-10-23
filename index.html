@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ملف المهمة - منار العلم</title>
+
+<style>
+:root {
+    --bg:#fff;
+    --ink:#2d4a7a;
+    --card:#f4f8fd;
+    --line:#b7c9e4;
+    --chip:#cfdcf2;
+    --ic:#dfe8e0;
+    --head1:#3a5c92;
+    --head2:#fff;
+}
+* { box-sizing:border-box; }
+html { scroll-padding-top:env(safe-area-inset-top,0px); }
+body {
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Tajawal","Segoe UI",Tahoma,sans-serif;
+}
+header {
+    background:linear-gradient(var(--head1),var(--head2));
+    padding:28px 20px 40px;
+    text-align:center;
+}
+.top {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    max-width:960px;
+    margin:0 auto;
+    direction:ltr;
+    gap:12px;
+    flex-wrap:wrap;
+}
+.big {
+    font-size:clamp(28px,6vw,52px);
+    font-weight:900;
+    color:#1c2f57;
+    line-height:1;
+    text-align:left;
+    font-family:Impact,"Arial Black",sans-serif;
+    letter-spacing:1px;
+}
+.big span {
+    display:inline-block;
+    background:#bcd0f0;
+    padding:4px 14px;
+    font-size:.45em;
+    margin-top:6px;
+    font-family:Arial,sans-serif;
+    letter-spacing:2px;
+}
+.logos {
+    font-weight:700;
+    font-size:14px;
+    text-align:center;
+    color:#1c2f57;
+    border:2px dashed var(--line);
+    padding:10px 14px;
+    border-radius:12px;
+}
+.title {
+    display:inline-block;
+    margin-top:20px;
+    background:#fbf4e6;
+    color:var(--ink);
+    padding:8px 26px;
+    border-radius:12px;
+    font-weight:800;
+    font-size:20px;
+}
+main {
+    max-width:960px;
+    margin:-10px auto 0;
+    padding:20px 14px 40px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:22px;
+}
+.card {
+    position:relative;
+    background:var(--card);
+    border:1.5px solid var(--line);
+    border-radius:6px 24px 6px 6px;
+    padding:30px 12px 12px;
+}
+.tag {
+    position:absolute;
+    top:-12px;
+    left:14px;
+    direction:ltr;
+    background:var(--bg);
+    border:2px solid var(--ink);
+    padding:1px 10px;
+    font-weight:800;
+    font-size:13px;
+    transform:rotate(-4deg);
+    font-family:Arial,sans-serif;
+}
+.row {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:10px;
+}
+.ic {
+    flex:none;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:var(--ic);
+    display:grid;
+    place-items:center;
+    font-size:18px;
+}
+.f {
+    flex:1;
+    position:relative;
+    background:var(--bg);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:18px 12px 8px;
+    min-height:50px;
+    font-size:14px;
+    border-bottom:1px dashed var(--line);
+    overflow-wrap:anywhere;
+}
+.f b {
+    position:absolute;
+    top:-9px;
+    right:10px;
+    background:var(--chip);
+    color:var(--ink);
+    font-size:11px;
+    padding:1px 10px;
+    border-radius:6px;
+}
+.f input {
+    width:100%;
+    border:0;
+    background:transparent;
+    color:var(--ink);
+    font:inherit;
+    font-size:14px;
+    outline:none;
+    padding:0;
+}
+.dl {
+    grid-column:1/-1;
+    max-width:420px;
+    margin:0 auto;
+    width:100%;
+}
+#st {
+    text-align:center;
+    font-size:12px;
+    opacity:.7;
+    padding-bottom:20px;
+}
+.assignment {
+    max-width:900px;
+    margin:10px auto 50px;
+    padding:25px 18px;
+    background:var(--card);
+    border:1.5px solid var(--line);
+    border-radius:20px;
+}
+.assignment-title {
+    text-align:center;
+    margin:0 0 8px;
+    font-size:22px;
+}
+.assignment-subtitle {
+    text-align:center;
+    font-size:14px;
+    opacity:.75;
+    margin-bottom:22px;
+}
+.assignment-box {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+.assignment-box select,
+.assignment-box input {
+    padding:12px;
+    border:1px solid var(--line);
+    border-radius:10px;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:inherit;
+    outline:none;
+}
+.assignment-box select { min-width:250px; }
+.assignment-box input { width:200px; }
+.assign-btn {
+    padding:12px 20px;
+    border:0;
+    border-radius:10px;
+    background:#3a5c92;
+    color:white;
+    font-family:inherit;
+    font-weight:700;
+    cursor:pointer;
+}
+.assign-btn:disabled { opacity:.6; cursor:wait; }
+#message {
+    text-align:center;
+    margin-top:15px;
+    font-size:14px;
+    font-weight:700;
+    overflow-wrap:anywhere;
+}
+.mission-results {
+    margin-top:25px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:12px;
+}
+.mission-result {
+    background:var(--bg);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px;
+}
+.mission-result strong {
+    display:block;
+    margin-bottom:6px;
+}
+.available { color:#6c8f68; font-size:13px; }
+.taken { color:#3a5c92; font-weight:700; }
+
+@media(max-width:600px) {
+    main { grid-template-columns:1fr; }
+    .assignment-box { flex-direction:column; }
+    .assignment-box select,
+    .assignment-box input,
+    .assign-btn {
+        width:100%;
+        max-width:350px;
+    }
+}
+</style>
+</head>
+
+<body>
+<header>
+    <div class="top">
+        <div class="logos">
+            <span style="color:#bcd0f0;">مَنار العِلم EL MANAR</span>
+        </div>
+        <div class="big">
+            CONFIDENTIAL <br>
+            <span>TEAM MISSION</span>
+        </div>
+    </div>
+    <div class="title">☆ ملف المهمة ☆</div>
+</header>
+
+<main id="m"></main>
+<div id="st">⏳ جاري تحميل المهام...</div>
+
+<section class="assignment">
+    <h2 class="assignment-title">🎯 استلام المهمة</h2>
+    <div class="assignment-subtitle">
+        اختار/ي المهمة المناسبة لك واكتب اسمك/ي لاستلامها 🤍
+    </div>
+
+    <div class="assignment-box">
+        <select id="missionSelect">
+            <option value="">اختار/ي المهمة</option>
+        </select>
+
+        <input
+            type="text"
+            id="assignName"
+            maxlength="50"
+            placeholder="اكتب اسمك/ي هنا"
+            autocomplete="name"
+        >
+
+        <button class="assign-btn" id="assignBtn" type="button">
+            استلام المهمة
+        </button>
+    </div>
+
+    <div id="message" role="status" aria-live="polite"></div>
+    <div id="missionsList" class="mission-results"></div>
+</section>
+
+<script type="module">
+import { initializeApp } from
+"https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+
+import {
+    getFirestore,
+    doc,
+    getDocs,
+    collection,
+    runTransaction,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
+import {
+    getAnalytics,
+    isSupported
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-analytics.js";
+
+/* Firebase: Manar 8 */
+const firebaseConfig = {
+    apiKey: "AIzaSyBr_KBpfMmLmgzZEKboIaYs7nXZzRm_WK8",
+    authDomain: "manar-8.firebaseapp.com",
+    projectId: "manar-8",
+    storageBucket: "manar-8.firebasestorage.app",
+    messagingSenderId: "716848463985",
+    appId: "1:716848463985:web:58dcd9ccd44d79237b9bd0",
+    measurementId: "G-HQC52P3V7D"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+isSupported().then(supported => {
+    if (supported) getAnalytics(app);
+}).catch(console.error);
+
+/* مهام الشابتر الثامن */
+const missionDetails = [
+    "شرح الشابتر الثامن",
+    "ملخص الشابتر الثامن",
+    "كويز الشابتر الثامن",
+    "تدقيق شرح الشابتر الثامن",
+    "تدقيق ملخص الشابتر الثامن",
+    "تدقيق كويز الشابتر الثامن"
+];
+
+const missionSelect = document.getElementById("missionSelect");
+const assignName = document.getElementById("assignName");
+const assignBtn = document.getElementById("assignBtn");
+const message = document.getElementById("message");
+const missionsList = document.getElementById("missionsList");
+const statusText = document.getElementById("st");
+const missionCollection = collection(db, "missions");
+
+/* إنشاء قائمة الاختيار */
+missionDetails.forEach((mission, index) => {
+    const option = document.createElement("option");
+    option.value = `mission${index + 1}`;
+    option.textContent = mission;
+    missionSelect.appendChild(option);
+});
+
+/* إنشاء بطاقات المهام */
+let cardsHTML = "";
+
+missionDetails.forEach((mission, index) => {
+    const number = index + 1;
+
+    cardsHTML += `
+        <section class="card">
+            <div class="tag">MISSION #0${number}</div>
+            <div class="row">
+                <div class="ic">🎯</div>
+                <div class="f">
+                    <b>رقم المهمة:</b>
+                    <div>#0${number}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="ic">📝</div>
+                <div class="f">
+                    <b>المطلوب:</b>
+                    <div>${mission}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="ic">👤</div>
+                <div class="f">
+                    <b>المسؤول:</b>
+                    <input
+                        type="text"
+                        id="missionPerson${number}"
+                        placeholder="سيظهر اسم المسؤول هنا"
+                        readonly
+                    >
+                </div>
+            </div>
+        </section>
+    `;
+});
+
+cardsHTML += `
+    <section class="card dl">
+        <div class="tag">DEADLINE</div>
+        <div class="row">
+            <div class="ic">⏰</div>
+            <div class="f">
+                <b>الموعد النهائي:</b>
+                <input
+                    type="text"
+                    value="20 - 5 - 1448 هـ | 31 - 10 - 2026 م"
+                    readonly
+                >
+            </div>
+        </div>
+    </section>
+`;
+
+document.getElementById("m").innerHTML = cardsHTML;
+
+/* تحميل المهام من Firestore */
+async function loadMissions() {
+    statusText.textContent = "⏳ جاري تحديث قائمة المهام...";
+
+    try {
+        const snapshot = await getDocs(missionCollection);
+        const assigned = new Map();
+
+        snapshot.forEach(item => {
+            assigned.set(item.id, item.data());
+        });
+
+        missionsList.replaceChildren();
+
+        missionDetails.forEach((mission, index) => {
+            const number = index + 1;
+            const record = assigned.get(`mission${number}`);
+
+            const card = document.createElement("div");
+            card.className = "mission-result";
+
+            const title = document.createElement("strong");
+            title.textContent = `📌 ${mission}`;
+
+            const detail = document.createElement("span");
+
+            if (record && record.name) {
+                detail.className = "taken";
+                detail.textContent = `👤 المسؤول: ${record.name}`;
+            } else {
+                detail.className = "available";
+                detail.textContent = "✓ المهمة متاحة للاستلام";
+            }
+
+            card.append(title, detail);
+            missionsList.appendChild(card);
+
+            document.getElementById(`missionPerson${number}`).value =
+                record?.name || "لم يتم استلام المهمة بعد";
+        });
+
+      
+    } catch (error) {
+        console.error("Firebase read error:", error);
+        statusText.textContent =
+            "تعذّر تحميل المهام. تحققي من إعدادات Firestore وقواعد الأمان.";
+    }
+}
+
+/* استلام المهمة */
+async function assignMission() {
+    const missionId = missionSelect.value;
+    const name = assignName.value.trim();
+
+    if (!missionId) {
+        message.textContent = "⚠️ اختار/ي المهمة أولاً.";
+        return;
+    }
+
+    if (!name) {
+        message.textContent = "⚠️ اكتب اسمك/ي أولاً.";
+        return;
+    }
+
+    assignBtn.disabled = true;
+    message.textContent = "⏳ جاري تسجيل المهمة...";
+
+    try {
+        const missionRef = doc(db, "missions", missionId);
+        const missionIndex = Number(missionId.replace("mission", "")) - 1;
+
+        await runTransaction(db, async transaction => {
+            const existing = await transaction.get(missionRef);
+
+            if (existing.exists()) {
+                throw new Error("MISSION_ALREADY_TAKEN");
+            }
+
+            transaction.set(missionRef, {
+                name,
+                mission: missionDetails[missionIndex],
+                createdAt: serverTimestamp()
+            });
+        });
+
+        message.textContent =
+            "✅ تم تسجيل اسمك/ي واستلام المهمة بنجاح!";
+
+        assignName.value = "";
+        missionSelect.value = "";
+
+        await loadMissions();
+
+    } catch (error) {
+        console.error("Firebase write error:", error);
+
+        if (error.message === "MISSION_ALREADY_TAKEN") {
+            message.textContent =
+                "⚠️ هذه المهمة تم استلامها مسبقًا، اختار/ي مهمة أخرى.";
+        } else if (error.code === "permission-denied") {
+            message.textContent =
+                "❌ لا توجد صلاحية للحفظ. راجعي قواعد Firestore.";
+        } else {
+            message.textContent =
+                "❌ تعذّر الحفظ. تحققي من إعدادات Firebase والاتصال.";
+        }
+
+        await loadMissions();
+    } finally {
+        assignBtn.disabled = false;
+    }
+}
+
+assignBtn.addEventListener("click", assignMission);
+
+assignName.addEventListener("keydown", event => {
+    if (event.key === "Enter") assignMission();
+});
+
+loadMissions();
+</script>
+</body>
+</html>
